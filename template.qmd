@@ -377,7 +377,7 @@ quarto install extension grantmcdermott/quarto-revealjs-clean
 Use these demo slides as a template:
 
 ```{.bash}
-quarto install template grantmcdermott/quarto-revealjs-clean-demo
+quarto use template grantmcdermott/quarto-revealjs-clean-demo
 ```
 
 ## References
