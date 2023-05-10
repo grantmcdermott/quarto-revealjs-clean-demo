@@ -1,5 +1,5 @@
 ---
-title: Quarto revealjs clean
+title: Quarto reveal.js clean
 subtitle: A minimal and elegant presentation theme
 format:
   clean-revealjs:
@@ -59,7 +59,7 @@ install.packages(c("modelsummary", "gt", "fixest", "pdftools", "tinytex", "three
 :::{.callout-note}
 ## TinyTex
 
-While Revealjs presentations are HTML format, we will show an example of how to 
+While reveal.js presentations are HTML format, we will show an example of how to 
 embed LaTeX tables as images. This requires a working Tex distribution, of which
 TinyTex provides by far the easiest and lightest integration with Quarto. More
 details [here](https://quarto.org/docs/output-formats/pdf-engine.html).
@@ -97,12 +97,10 @@ To emphasize specific words or text, you can:
 - Use the `.fg` class for custom colour, e.g. [important note]{.fg style="--col: #e64173"}.
 - Use the `.bg` class for custom background, e.g. [important note]{.bg style="--col: #e64173"}.
 
-To cross-reference, you have several options.
+To cross-reference, you have several options, for example:
 
 - Beamer-like `.button` class provided by this theme, e.g. [[Appendix]{.button}](#sec-appendix)
 - Quarto's native cross-ref syntax, e.g., "See @sec-appendix."
-- Hyperlink manually, e.g. "See the [Appendix](#sec-appendix)."
-
 
 ## Components
 
@@ -147,7 +145,7 @@ $$
 #### Column 1
 
 Here is a long sentence that will wrap onto the next line as it hits the column
-width, and continuing on this way until it stops.
+width, and continue this way until it stops.
 :::
 
 ::: {.column width="50%"}
@@ -315,7 +313,7 @@ the slide background with an image.
 
 Ideally, your figure will be the same aspect ratio as the screen that you're presenting on.
 
-- This can be a bit tricky because of the dynamic nature of Reveal.js / HTML. But its probably something close to 16:9.
+- This can be a bit tricky because of the dynamic nature of reveal.js / HTML. But it's probably something close to 16:9.
 - Aspect ratio can also matter for a regular full-frame images (previous slide).
 
 ## {background-image="images/kanagawa169.jpg" background-size="100%"}
@@ -364,9 +362,10 @@ plotting options beyond this.
 ### A minimal and elegant presentation theme
 
 
-The Quarto Revealjs clean theme is intended as a minimal and elegant presention theme.
+The Quarto reveal.js [clean theme](grantmcdermott/quarto-revealjs-clean) aims to
+be a minimal and elegant presention theme.
 
-We have highlighted some theme-specific components. But all of the regular Revealjs functionality is supported ([chalkboard](https://quarto.org/docs/presentations/revealjs/presenting.html#chalkboard), etc.)
+We have highlighted some theme-specific components. But all of the regular reveal.js functionality is supported ([chalkboard](https://quarto.org/docs/presentations/revealjs/presenting.html#chalkboard), etc.)
 
 Install the theme:
 
