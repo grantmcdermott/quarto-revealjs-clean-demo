@@ -41,23 +41,18 @@ even if we don't cover everything here.
 
 ### Requirements for the coding examples in this demo
 
-:::{.callout-note}
-## R libraries
+The reveal.js `clean` theme is language agnostic. However, this demo calls additional R packages to highlight some advanced theme features. Please install the following if you would like to render the template "as-is".
 
-While the clean theme is language agnostic, we will use several R coding
-examples in this demo to highlight some advanced theme features.
+:::{.callout-warning}
 
-You will need the following libraries if you'd like to render the template
-"as-is":
+## Required software (this demo only)
+
+### R libraries
 
 ```{.r}
-install.packages(c("modelsummary", "gt", "fixest", "pdftools", "tinytex", "threejs"))
+install.packages(c("modelsummary", "fixest", "pdftools", "tinytex", "threejs"))
 ```
-:::
-
-
-:::{.callout-note}
-## TinyTex
+### TinyTex
 
 While reveal.js presentations are HTML format, we will show an example of how to 
 embed LaTeX tables as images. This requires a working Tex distribution, of which
@@ -67,7 +62,9 @@ details [here](https://quarto.org/docs/output-formats/pdf-engine.html).
 ```{.bash}
 quarto install tinytex
 ```
+
 :::
+
 
 # Components {background-color="#40666e"}
 
@@ -208,14 +205,50 @@ pairs(
 
 # Tables {background-color="#40666e"}
 
-## Tables
+## Markdown tables
+
+### Default table styling
+
+The `clean` theme rolls its own minimalist aesthetic for tables. This should interface directly with Quarto's excellent
+[table support](https://quarto.org/docs/authoring/tables.html).
+
+:::: {.columns}
+::: {.column width="55%"}
+
+```md
+| fruit  | price  |
+|--------|-------:|
+| apple  | 2.05   |
+| pear   | 1.37   |
+| orange | 3.09   |
+
+: Fruit prices {tbl-colwidths="[75,25]"}
+```
+
+:::
+::: {.column width="5%"}
+:::
+::: {.column width="40%"}
+| fruit  | price  |
+|--------|-------:|
+| apple  | 2.05   |
+| pear   | 1.37   |
+| orange | 3.09   |
+
+: Fruit prices {tbl-colwidths="[75,25]"}
+
+:::
+
+::::
+
+
+## Regression tables
 
 ### Regression example
 
-Quarto offers excellent
-[table support](https://quarto.org/docs/authoring/tables.html),
-with further customization via user libraries. Let's illustrate with a
-regression example:
+These aesthetics should carry over to any computation-based tables too.
+
+Let's take a few slides to illustrate via a simple regression example:
 
 ```{r}
 #| echo: true
@@ -223,7 +256,7 @@ regression example:
 library(fixest)
 
 mods = feols(
-  rating ~ complaints + privileges + learning + csw0(raises + critical) + advance,
+  rating ~ complaints + privileges + learning + csw0(raises + critical),
   data = attitude
 )
 
@@ -232,37 +265,33 @@ dict = c("rating"     = "Overall Rating",
          "privileges" = "No Special Priviledges",
          "learning"   = "Opportunity to Learn",
          "raises"     = "Performance-Based Raises",
-         "critical"   = "Too Critical",
-         "advance"    = "Advancement")
+         "critical"   = "Too Critical")
 ```
 
-## Regression table
+## Regression tables
 
 ### modelsummary
 
-If you use `modelsummary` with this Quarto theme, we advise setting the `gt`
-backend for a cleaner aesthetic. More details
-[here](https://vincentarelbundock.github.io/modelsummary/articles/appearance.html).
+Popular regression table software should play nicely with this theme out of the box. Here's an example using `modelsummary` (with the default `tinytable` backend^[For extra styling options (e.g., bootstrap themes), see [here](https://modelsummary.com/vignettes/appearance.html).]). See the next slide for the resulting table.
 
 ```{r}
 #| echo: true
 #| output-location: slide
 
-library(modelsummary)
-options(modelsummary_factory_default = "gt")
+library(modelsummary) # Make sure you have >=v2.0.0
 
 modelsummary(
   setNames(mods, c("(1)", "(2)")),
   coef_map = dict, stars = TRUE,
-  gof_omit = "Adj|IC|F|Log|RMSE"
+  gof_map = NA
   ) |>
-  gt::tab_spanner(
-    label = "Dependent variable: Overall Rating",
-    columns = 2:3
-  )
+  # some optional stylistic tweaks
+  tinytable::group_tt(j = list("Dep. variable: Overall Rating" = 2:3)) |>
+  tinytable::style_tt(i = 1:2, j = 2:3, background = "pink")
 ```
 
-## Regression table
+
+## Regression tables
 
 ### etable
 
@@ -285,7 +314,7 @@ etable(mods, highlight = .("se" = "complaints"))
 ```
 ````
 
-## Regression table
+## Regression tables
 
 ### etable (cont.)
 
@@ -355,6 +384,23 @@ _Note: Simple flight data example using `threejs`. There are many interactive
 plotting options beyond this.
 (More [details](https://quarto.org/docs/interactive/).)_
 
+# Other {background-color="#40666e"}
+
+## Other
+
+### What else can the clean theme do?
+
+We have highlighted some theme-specific components in this demo.
+
+But please note that all of the standard
+[reveal.js functionality and plugins](https://quarto.org/docs/presentations/revealjs/presenting.html)
+are compatible with the clean theme. This includes:
+
+- [chalkboard](https://quarto.org/docs/presentations/revealjs/presenting.html#chalkboard) for annotating slides.
+- [multiplex](https://quarto.org/docs/presentations/revealjs/presenting.html#multiplex) for enabling audience navigation of your slides.
+- [pdf printing](https://quarto.org/docs/presentations/revealjs/presenting.html#print-to-pdf) in case you don't have access to a web browser.
+- Etc.
+
 # Summary {background-color="#40666e"}
 
 ## Summary
@@ -363,21 +409,28 @@ plotting options beyond this.
 
 
 The Quarto reveal.js [clean theme](grantmcdermott/quarto-revealjs-clean) aims to
-be a minimal and elegant presention theme.
+be a minimal and elegant presention theme. Here are some options to get you
+started.
 
-We have highlighted some theme-specific components. But all of the regular reveal.js functionality is supported ([chalkboard](https://quarto.org/docs/presentations/revealjs/presenting.html#chalkboard), etc.)
-
-Install the theme:
+Add the theme to an existing project.
 
 ```{.bash}
 quarto install extension grantmcdermott/quarto-revealjs-clean
 ```
 
-Use these demo slides as a template:
+... or, create a new project using our lean template.
+
+```{.bash}
+quarto use template grantmcdermott/quarto-revealjs-clean
+```
+
+... or, create a new project using these demo slides as a full template.
 
 ```{.bash}
 quarto use template grantmcdermott/quarto-revealjs-clean-demo
 ```
+
+
 
 ## References
 
@@ -387,10 +440,12 @@ quarto use template grantmcdermott/quarto-revealjs-clean-demo
 ## Appendix {#sec-appendix}
 
 ```{r}
+#| cache: true
 #| label: tbl-attsum
 #| tbl-cap: Summary of the base R `attitude` dataset
 
-modelsummary::datasummary_skim(attitude)
+library(modelsummary)
+datasummary_skim(attitude)
 ```
 
 [[Back to main]{.button}](#sec-crossref)
