@@ -278,7 +278,7 @@ Popular regression table software should play nicely with this theme out of the 
 #| echo: true
 #| output-location: slide
 
-library(modelsummary) # Make sure you have >=v1.4.5
+library(modelsummary) # Make sure you have >=v2.0.0
 
 modelsummary(
   setNames(mods, c("(1)", "(2)")),
@@ -440,11 +440,12 @@ quarto use template grantmcdermott/quarto-revealjs-clean-demo
 ## Appendix {#sec-appendix}
 
 ```{r}
+#| cache: true
 #| label: tbl-attsum
 #| tbl-cap: Summary of the base R `attitude` dataset
 
 library(modelsummary)
-datasummary_skim(attitude, output = 'markdown')
+datasummary_skim(attitude)
 ```
 
 [[Back to main]{.button}](#sec-crossref)
