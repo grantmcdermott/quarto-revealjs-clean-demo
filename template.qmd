@@ -1,6 +1,6 @@
 ---
 title: Quarto reveal.js clean
-subtitle: A minimal and elegant presentation theme
+subtitle: A minimalist and elegant presentation theme
 format:
   clean-revealjs:
     self-contained: true
@@ -41,27 +41,30 @@ even if we don't cover everything here.
 
 ### Requirements for the coding examples in this demo
 
-The reveal.js `clean` theme is language agnostic. However, this demo calls additional R packages to highlight some advanced theme features. Please install the following if you would like to render the template "as-is".
+The [clean theme](https://github.com/grantmcdermott/quarto-revealjs-clean) is
+language agnostic. Use it with R, Python, Julia, etc. Or none of the above.
+
+However, this demo uses R code to highlight advanced theme features.
+You'll need to install some software if you'd like to render the demo "as-is".
 
 :::{.callout-warning}
 
 ## Required software (this demo only)
 
-### R libraries
+### R packages
 
 ```{.r}
 install.packages(c("modelsummary", "fixest", "pdftools", "tinytex", "threejs"))
 ```
 ### TinyTex
 
+```{.bash}
+quarto install tinytex
+```
 While reveal.js presentations are HTML format, we will show an example of how to 
 embed LaTeX tables as images. This requires a working Tex distribution, of which
 TinyTex provides by far the easiest and lightest integration with Quarto. More
 details [here](https://quarto.org/docs/output-formats/pdf-engine.html).
-
-```{.bash}
-quarto install tinytex
-```
 
 :::
 
@@ -272,7 +275,12 @@ dict = c("rating"     = "Overall Rating",
 
 ### modelsummary
 
-Popular regression table software should play nicely with this theme out of the box. Here's an example using `modelsummary` (with the default `tinytable` backend^[For extra styling options (e.g., bootstrap themes), see [here](https://modelsummary.com/vignettes/appearance.html).]). See the next slide for the resulting table.
+Popular regression table software should play nicely with this theme out of the
+box. Here's an example using [modelsummary](https://modelsummary.com/) (with the
+default [tinytable](https://vincentarelbundock.github.io/tinytable/)
+backend^[For extra styling options (e.g., bootstrap themes), see
+[here](https://modelsummary.com/vignettes/appearance.html).]). See the next
+slide for the resulting table.
 
 ```{r}
 #| echo: true
@@ -293,15 +301,13 @@ modelsummary(
 
 ## Regression tables
 
-### etable
+### fixest::etable
 
-`fixest`'s powerful native tabling functions were designed for LaTeX output. But we
-can use the `markdown = TRUE` option to make them work with this theme too. 
-(Details
-[here](https://lrberge.github.io/fixest/articles/etable_new_features.html).) Quick notes:
+**Aside:** We used the fantastic [fixest](https://lrberge.github.io/fixest/) package to estimate our regression models. fixest bundles its own powerful tabling functions. These were designed for LaTeX output, but can work with this (HTML) theme too.^[Details
+[here](https://lrberge.github.io/fixest/articles/etable_new_features.html). You need to install the `tinytex` & `pdftools` packages first.]
 
- - Install the `tinytex` & `pdftools` packages first.
- - Set the R chunk option `output: asis`. 
+- Set the `output: asis` R chunk option in your Quarto doc.
+- Set the `markdown = TRUE` fixest::etable option.
 
 ````
 ```{{r}}
@@ -316,7 +322,7 @@ etable(mods, highlight = .("se" = "complaints"))
 
 ## Regression tables
 
-### etable (cont.)
+### fixest::etable (cont.)
 
 ```{r}
 #| output: asis
@@ -405,11 +411,11 @@ are compatible with the clean theme. This includes:
 
 ## Summary
 
-### A minimal and elegant presentation theme
+### A minimalist and elegant presentation theme
 
 
 The Quarto reveal.js [clean theme](grantmcdermott/quarto-revealjs-clean) aims to
-be a minimal and elegant presention theme. Here are some options to get you
+be a minimalist and elegant presention theme. Here are some options to get you
 started.
 
 Add the theme to an existing project.
