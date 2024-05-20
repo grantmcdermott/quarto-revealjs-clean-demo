@@ -1,9 +1,12 @@
 ---
 title: Quarto reveal.js clean
 subtitle: A minimalist and elegant presentation theme
-format:
+format: 
   clean-revealjs:
     self-contained: true
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 author:
   - name: Grant McDermott
     orcid: 0000-0001-7883-8573
