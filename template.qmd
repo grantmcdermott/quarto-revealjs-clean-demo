@@ -14,8 +14,8 @@ author:
     affiliations: Amazon.com
   - name: Kyle Butts
     orcid: 0000-0002-9048-8059
-    email: kyle.butts@colorado.edu
-    affiliations: UC Boulder
+    email: kbutts@uark.edu
+    affiliations: U of Arkansas
 date: last-modified
 bibliography: refs.bib
 ---
