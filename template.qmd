@@ -1,7 +1,7 @@
 ---
 title: Quarto reveal.js clean
 subtitle: A minimalist and elegant presentation theme
-format: 
+format:
   clean-revealjs:
     self-contained: true
 html-math-method:
@@ -171,7 +171,7 @@ span column in the same slide.
 :::: {.columns}
 
 ::: {.column width="50%"}
-![](images/kanagawa.jpg)
+![](img/kanagawa.jpg)
 :::
 
 ::: {.column width="50%"}
@@ -340,7 +340,7 @@ etable(mods, highlight = .("se" = "complaints"), arraystretch = 1.5)
 
 ## Figure
 
-![](images/kanagawa.jpg)
+![](img/kanagawa.jpg)
 
 ## Figure
 
@@ -354,7 +354,7 @@ Ideally, your figure will be the same aspect ratio as the screen that you're pre
 - This can be a bit tricky because of the dynamic nature of reveal.js / HTML. But it's probably something close to 16:9.
 - Aspect ratio can also matter for a regular full-frame images (previous slide).
 
-## {background-image="images/kanagawa169.jpg" background-size="100%"}
+## {background-image="img/kanagawa169.jpg" background-size="100%"}
 
 ## Interactive plots
 
@@ -417,7 +417,7 @@ are compatible with the clean theme. This includes:
 ### A minimalist and elegant presentation theme
 
 
-The Quarto reveal.js [clean theme](grantmcdermott/quarto-revealjs-clean) aims to
+The Quarto reveal.js [clean theme](https://github.com/grantmcdermott/quarto-revealjs-clean) aims tograntmcdermott/quarto-revealjs-clean
 be a minimalist and elegant presention theme. Here are some options to get you
 started.
 
