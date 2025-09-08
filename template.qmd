@@ -4,9 +4,6 @@ subtitle: A minimalist and elegant presentation theme
 format:
   clean-revealjs:
     self-contained: true
-html-math-method:
-  method: mathjax
-  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 author:
   - name: Grant McDermott
     orcid: 0000-0001-7883-8573
@@ -64,10 +61,7 @@ install.packages(c("modelsummary", "fixest", "pdftools", "tinytex", "threejs"))
 ```{.bash}
 quarto install tinytex
 ```
-While reveal.js presentations are HTML format, we will show an example of how to 
-embed LaTeX tables as images. This requires a working Tex distribution, of which
-TinyTex provides by far the easiest and lightest integration with Quarto. More
-details [here](https://quarto.org/docs/output-formats/pdf-engine.html).
+Note: While the "clean" extension renders to HTML format, this demo includes an example where a LaTeX table can be embedded as an image, which requires [TinyTex](https://quarto.org/docs/output-formats/pdf-engine.html).
 
 :::
 
@@ -123,9 +117,7 @@ and be sourced from BibLaTex, BibTeX, or CLS files. For example:
 
 Quarto provides
 [dedicated environments](https://quarto.org/docs/authoring/cross-references.html#theorems-and-proofs)
-for theorems, lemmas, and so forth. 
-
-But in presentation format, it's arguably more effective just to use a
+for theorems, lemmas, etc. But for presentations, it's arguably more effective just to use a
 [Callout Block](https://quarto.org/docs/authoring/callouts.html).
 
 :::{.callout-note}
@@ -137,6 +129,15 @@ $$
 y_{it} = X_{it} \beta + \mu_i + \varepsilon_{it}
 $$
 :::
+
+:::{.fragment}
+P.S. Regular inline (e.g., $\alpha = 2\pi$) and display math equations work fine too:
+
+$$
+P(E) = {n \choose k} p^k (2-p)^{n-k} \int^\infty_0 x dx
+$$
+:::
+
 
 ## Components
 
@@ -286,6 +287,7 @@ backend^[For extra styling options (e.g., bootstrap themes), see
 slide for the resulting table.
 
 ```{r}
+#| cache: true
 #| echo: true
 #| output-location: slide
 
@@ -364,7 +366,7 @@ Ideally, your figure will be the same aspect ratio as the screen that you're pre
 library(threejs)
 
 # Approximate locations as factors
-data(flights)
+flights = flights()
 dest = factor(sprintf("%.2f:%.2f", flights[,3], flights[,4]))
 
 # A table of destination frequencies
@@ -415,7 +417,6 @@ are compatible with the clean theme. This includes:
 ## Summary
 
 ### A minimalist and elegant presentation theme
-
 
 The Quarto reveal.js [clean theme](https://github.com/grantmcdermott/quarto-revealjs-clean) aims tograntmcdermott/quarto-revealjs-clean
 be a minimalist and elegant presention theme. Here are some options to get you
