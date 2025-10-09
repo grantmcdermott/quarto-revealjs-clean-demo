@@ -113,30 +113,29 @@ and be sourced from BibLaTex, BibTeX, or CLS files. For example:
 
 ## Components
 
-### Blocks
+### Mathematics
 
-Quarto provides
-[dedicated environments](https://quarto.org/docs/authoring/cross-references.html#theorems-and-proofs)
-for theorems, lemmas, etc. But for presentations, it's arguably more effective just to use a
-[Callout Block](https://quarto.org/docs/authoring/callouts.html).
+Use inline ($\alpha$, $\pi$) or display math as needed:
+
+$$
+P(E) = {n \choose k} p^k (2-p)^{n-k} \int^\infty_0 x dx
+$$
+
+
+::::{.fragment}
+P.S. Quarto provides dedicated
+[math environments](https://quarto.org/docs/authoring/cross-references.html#theorems-and-proofs)
+for theorems, lemmas, etc. But for presentations, it's easier just to highlight via a
+[callout block](https://quarto.org/docs/authoring/callouts.html).
 
 :::{.callout-note}
-## Regression Specification
-
-The main specification is as follows:
+## Regression specification
 
 $$
 y_{it} = X_{it} \beta + \mu_i + \varepsilon_{it}
 $$
 :::
-
-:::{.fragment}
-P.S. Regular inline (e.g., $\alpha = 2\pi$) and display math equations work fine too:
-
-$$
-P(E) = {n \choose k} p^k (2-p)^{n-k} \int^\infty_0 x dx
-$$
-:::
+::::
 
 
 ## Components
@@ -279,19 +278,16 @@ dict = c("rating"     = "Overall Rating",
 
 ### modelsummary
 
-Popular regression table software should play nicely with this theme out of the
-box. Here's an example using [modelsummary](https://modelsummary.com/) (with the
-default [tinytable](https://vincentarelbundock.github.io/tinytable/)
-backend^[For extra styling options (e.g., bootstrap themes), see
-[here](https://modelsummary.com/vignettes/appearance.html).]). See the next
-slide for the resulting table.
+Regression table software should play nice with this theme out the
+gate. Here's a [modelsummary](https://modelsummary.com/)
+example.
 
 ```{r}
 #| cache: true
 #| echo: true
 #| output-location: slide
 
-library(modelsummary) # Make sure you have >=v2.0.0
+library(modelsummary)
 
 modelsummary(
   setNames(mods, c("(1)", "(2)")),
@@ -303,16 +299,16 @@ modelsummary(
   tinytable::style_tt(i = 1:2, j = 2:3, background = "pink")
 ```
 
+(The table is displayed on the next slide.)
 
 ## Regression tables
 
 ### fixest::etable
 
-**Aside:** We used the fantastic [fixest](https://lrberge.github.io/fixest/) package to estimate our regression models. fixest bundles its own powerful tabling functions. These were designed for LaTeX output, but can work with this (HTML) theme too.^[Details
-[here](https://lrberge.github.io/fixest/articles/etable_new_features.html). You need to install the `tinytex` & `pdftools` packages first.]
+**Aside:** We estimated our models with [fixest](https://lrberge.github.io/fixest/), which bundles its own powerful `etable` function. While `etable` was designed for LaTeX output, it can be [incorporated](https://lrberge.github.io/fixest/articles/etable_new_features.html) into HTML Quarto too.^[You will need to install the `tinytex` & `pdftools` packages first.]
 
 - Set the `output: asis` R chunk option in your Quarto doc.
-- Set the `markdown = TRUE` fixest::etable option.
+- Set the `setFixest_etable(markdown = TRUE)` option.
 
 ````
 ```{{r}}
@@ -340,13 +336,15 @@ etable(mods, highlight = .("se" = "complaints"), arraystretch = 1.5)
 
 # Figures {background-color="#40666e"}
 
-## Figure
+## Figures
+### Automatic scaling
+
+We've already seen examples of code-generated plots and mulicolumn figures. But a reminder that figures will auto-scale with the available space.
 
 ![](img/kanagawa.jpg)
 
-## Figure
-
-### Full-size Figures
+## Figures
+### Backround images
 
 You can use the `{.background-image}` container environment to completely fill
 the slide background with an image.
