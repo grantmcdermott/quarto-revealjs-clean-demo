@@ -416,7 +416,7 @@ are compatible with the clean theme. This includes:
 
 ### A minimalist and elegant presentation theme
 
-The Quarto reveal.js [clean theme](https://github.com/grantmcdermott/quarto-revealjs-clean) aims tograntmcdermott/quarto-revealjs-clean
+The Quarto reveal.js [clean theme](https://github.com/grantmcdermott/quarto-revealjs-clean) aims to
 be a minimalist and elegant presention theme. Here are some options to get you
 started.
 
